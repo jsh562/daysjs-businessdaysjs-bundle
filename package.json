@@ -1,0 +1,49 @@
+{
+  "name": "dayjs-business-bundle",
+  "version": "1.0.0",
+  "description": "Browser bundle for Day.js and business-days-js",
+  "main": "dist/dayjs-business-bundle.js",
+  "module": "dist/dayjs-business-bundle.esm.js",
+  "browser": "dist/dayjs-business-bundle.min.js",
+  "type": "browser",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --config webpack.config.js",
+    "build:dev": "webpack --config webpack.config.js --mode development",
+    "build:prod": "webpack --config webpack.config.js --mode production --env minify",
+    "watch": "webpack --config webpack.config.js --mode development --watch",
+    "analyze": "webpack --config webpack.config.js --env analyze",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dayjs",
+    "business-days",
+    "date",
+    "bundle"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "business-days-js": "^2.3.0",
+    "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack": "^5.99.8",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^6.0.1"
+  },
+  "sideEffects": false,
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

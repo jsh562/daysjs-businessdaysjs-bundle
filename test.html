@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day.js and Business Days Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .result-box {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .code {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+  <!-- Load the bundled library -->
+  <script src="dist/dayjs-business-bundle.js"></script>
+</head>
+<body>
+  <h1>Day.js and Business-Days-JS Bundle Test</h1>
+  
+  <div class="result-box">
+    <h2>Basic Date Operations</h2>
+    <div id="basic-results"></div>
+  </div>
+  
+  <div class="result-box">
+    <h2>Business Days Operations</h2>
+    <div id="business-results"></div>
+  </div>
+  
+  <div class="result-box">
+    <h2>Code Example</h2>
+    <div class="code">
+      <pre>
+// Basic dayjs usage
+const today = dayjs();
+const tomorrow = today.add(1, 'day');
+const nextMonth = today.add(1, 'month');
+
+// Business days usage
+const isToday = businessDays.isBusinessDay(new Date());
+const nextBizDay = businessDays.nextBusinessDay(new Date());
+const prevBizDay = businessDays.prevBusinessDay(new Date());
+const bizDaysLater = businessDays.addBusinessDays(new Date(), 5);
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get references to result containers
+      const basicResults = document.getElementById('basic-results');
+      const businessResults = document.getElementById('business-results');
+      
+      // Using dayjs
+      const today = dayjs();
+      const tomorrow = today.add(1, 'day');
+      const nextMonth = today.add(1, 'month');
+      
+      // Display basic date results
+      basicResults.innerHTML = `
+        <p><strong>Current Date:</strong> ${today.format('YYYY-MM-DD')}</p>
+        <p><strong>Tomorrow:</strong> ${tomorrow.format('YYYY-MM-DD')}</p>
+        <p><strong>Next Month:</strong> ${nextMonth.format('YYYY-MM-DD')}</p>
+        <p><strong>Formatted Date:</strong> ${today.format('dddd, MMMM D, YYYY')}</p>
+      `;
+      
+      // Using business-days-js
+      const todayDate = new Date();
+      const isBusinessDay = businessDays.isBusinessDay(todayDate);
+      const nextBusinessDay = businessDays.nextBusinessDay(todayDate);
+      const prevBusinessDay = businessDays.prevBusinessDay(todayDate);
+      const fiveBusinessDaysLater = businessDays.addBusinessDays(todayDate, 5);
+      
+      // Format dates for display
+      const formatDate = (date) => {
+        return dayjs(date).format('YYYY-MM-DD (dddd)');
+      };
+      
+      // Display business day results
+      businessResults.innerHTML = `
+        <p><strong>Is Today a Business Day?</strong> ${isBusinessDay ? 'Yes' : 'No'}</p>
+        <p><strong>Next Business Day:</strong> ${formatDate(nextBusinessDay)}</p>
+        <p><strong>Previous Business Day:</strong> ${formatDate(prevBusinessDay)}</p>
+        <p><strong>5 Business Days Later:</strong> ${formatDate(fiveBusinessDaysLater)}</p>
+      `;
+    });
+  </script>
+</body>
+</html>
